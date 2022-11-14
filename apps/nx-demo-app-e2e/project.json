@@ -8,12 +8,12 @@
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/nx-demo-app-e2e/cypress.config.ts",
-        "devServerTarget": "nx-demo-app:serve:development",
+        "devServerTarget": "frontend:serve:development",
         "testingType": "e2e"
       },
       "configurations": {
         "production": {
-          "devServerTarget": "nx-demo-app:serve:production"
+          "devServerTarget": "frontend:serve:production"
         }
       }
     },
@@ -26,5 +26,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["nx-demo-app"]
+  "implicitDependencies": ["frontend"]
 }

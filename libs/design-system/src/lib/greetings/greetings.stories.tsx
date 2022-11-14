@@ -13,3 +13,13 @@ export const Primary = Template.bind({})
 Primary.args = {
   name: "Skelley"
 }
+
+export const Secondary = Template.bind({})
+Secondary.args = {
+  name: "Dennis"
+}
+
+export const Tertiary = Template.bind({})
+Tertiary.args = {
+  name: "Sweet Dee"
+}

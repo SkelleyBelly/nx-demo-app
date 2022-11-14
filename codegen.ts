@@ -9,7 +9,7 @@ const config: CodegenConfig = {
       plugins: ["typescript"]
     },
     "./src": {
-      documents: 'apps/nx-demo-app/src/app/queries.gql',
+      documents: 'apps/frontend/src/app/queries.gql',
       preset: "near-operation-file",
       presetConfig: {
         extension: '.generated.ts',

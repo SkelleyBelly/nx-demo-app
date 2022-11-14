@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import {Greetings} from '@nx-demo-app/design-system';
-import { useQuery, gql } from '@apollo/client';
-import {useGetBooksQuery} from './queries.generated'
+import { Greetings } from '@nx-demo-app/design-system';
+import { useGetUsersQuery } from './queries.generated';
 
 export const App = () => {
-  const { data } = useGetBooksQuery();
+  const { data, loading, error } = useGetUsersQuery();
+
+  const user = data?.users[0].name;
 
   return (
     <>
@@ -16,8 +16,13 @@ export const App = () => {
           alt="Nx - Smart, Fast and Extensible Build System"
         />
       </div>
-      <div>{JSON.stringify(data)}</div>
-      <Greetings name="Nathan" />
+
+      {loading && <p>Loading...</p>}
+
+      {error && <p>There was an error!</p>}
+
+      {user && <Greetings name={user} />}
+
     </>
   );
 };
