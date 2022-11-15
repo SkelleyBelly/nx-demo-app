@@ -10,7 +10,26 @@ const root = ReactDOM.createRoot(
 
 const client = new ApolloClient({
   uri: '/api',
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      Query: {
+        fields: {
+          users: {
+            // Don't cache separate results based on
+            // any of this field's arguments.
+            keyArgs: false,
+
+            // Concatenate the incoming list items with
+            // the existing list items.
+            merge(existing = [], incoming) {
+              return [...existing, ...incoming];
+            },
+          }
+        }
+
+      }
+    }
+  }),
 });
 
 root.render(

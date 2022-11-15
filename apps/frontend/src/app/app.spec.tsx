@@ -4,7 +4,10 @@ import { ErgonoMockedProvider as MockedProvider } from "graphql-ergonomock";
 import { buildClientSchema, IntrospectionQuery } from 'graphql';
 import introspectionResult from '@nx-demo-app/shared-graphql-interface/schema'
 
-const MOCK_USER_NAME = "Nathan Skelley"
+const mockUser = {
+    name: "Nathan Skelley",
+    email: "nathan@heytempo.com"
+}
 
 
 describe('App component', () => {
@@ -12,12 +15,13 @@ describe('App component', () => {
         render(<MockedProvider schema={buildClientSchema(introspectionResult as unknown as IntrospectionQuery)} mocks={{
             GetUsers: {
                 users: [{
-                    name: MOCK_USER_NAME
+                    name: mockUser.name,
+                    email: mockUser.email
                 }]
             }
         }}><App /></MockedProvider>)
 
-        await screen.findByText(`Hello there, ${MOCK_USER_NAME}`)
+        await screen.findByText(mockUser.name)
     })
 
     it("should render an error message", async () => {

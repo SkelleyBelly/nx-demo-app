@@ -1,7 +1,12 @@
-query GetUsers {
-  users {
-    id
+query GetUsers($take: Int, $skip: Int, $cursor: UserWhereUniqueInput) {
+  users(take: $take, skip: $skip, cursor: $cursor) {
     email
+    id
     name
+  }
+  aggregateUser {
+    _count {
+      _all
+    }
   }
 }

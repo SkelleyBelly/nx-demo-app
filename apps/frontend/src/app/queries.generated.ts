@@ -3,18 +3,27 @@ import * as Types from '@nx-demo-app/shared-graphql-interface';
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
 const defaultOptions = {} as const;
-export type GetUsersQueryVariables = Types.Exact<{ [key: string]: never; }>;
+export type GetUsersQueryVariables = Types.Exact<{
+  take?: Types.InputMaybe<Types.Scalars['Int']>;
+  skip?: Types.InputMaybe<Types.Scalars['Int']>;
+  cursor?: Types.InputMaybe<Types.UserWhereUniqueInput>;
+}>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', id: string, email: string, name?: string | null }> };
+export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', email: string, id: string, name?: string | null }>, aggregateUser: { __typename?: 'AggregateUser', _count?: { __typename?: 'UserCountAggregate', _all: number } | null } };
 
 
 export const GetUsersDocument = gql`
-    query GetUsers {
-  users {
-    id
+    query GetUsers($take: Int, $skip: Int, $cursor: UserWhereUniqueInput) {
+  users(take: $take, skip: $skip, cursor: $cursor) {
     email
+    id
     name
+  }
+  aggregateUser {
+    _count {
+      _all
+    }
   }
 }
     `;
@@ -31,6 +40,9 @@ export const GetUsersDocument = gql`
  * @example
  * const { data, loading, error } = useGetUsersQuery({
  *   variables: {
+ *      take: // value for 'take'
+ *      skip: // value for 'skip'
+ *      cursor: // value for 'cursor'
  *   },
  * });
  */

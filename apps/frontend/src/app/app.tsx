@@ -1,10 +1,16 @@
-import { Greetings } from '@nx-demo-app/design-system';
+import { NetworkStatus } from '@apollo/client';
+import { Button, UserCard } from '@nx-demo-app/design-system';
 import { useGetUsersQuery } from './queries.generated';
 
-export const App = () => {
-  const { data, loading, error } = useGetUsersQuery();
 
-  const user = data?.users[0].name;
+export const App = () => {
+  const { data, error, fetchMore, networkStatus } = useGetUsersQuery({
+    variables: {
+      take: 5,
+    }, notifyOnNetworkStatusChange: true
+  });
+
+  const hasNextPage = Boolean(data) && data?.aggregateUser._count?._all !== data?.users.length;
 
   return (
     <>
@@ -17,11 +23,24 @@ export const App = () => {
         />
       </div>
 
-      {loading && <p>Loading...</p>}
+      {networkStatus === NetworkStatus.loading && <p>Loading...</p>}
 
       {error && <p>There was an error!</p>}
 
-      {user && <Greetings name={user} />}
+      {data?.users.map((user) => <UserCard key={user.id} name={user.name as string} email={user.email as string} />)}
+
+      {hasNextPage && <Button onClick={() => {
+        fetchMore({
+          variables: {
+            skip: 1,
+            cursor: {
+              id: data?.users.at(-1)?.id
+            },
+          }
+        })
+      }}>Load more</Button>}
+
+      {networkStatus === NetworkStatus.fetchMore && <p>Loading more...</p>}
 
     </>
   );
