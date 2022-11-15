@@ -12,6 +12,7 @@ generator client {
 
 generator typegraphql {
   provider = "typegraphql-prisma"
+  output   = "../apps/mongo-graphql/src/generated/"
 }
 
 model User {

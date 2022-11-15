@@ -3,7 +3,7 @@ import 'reflect-metadata'
 import * as tq from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
 import { PrismaClient } from '@prisma/client';
-import { resolvers } from "@generated/type-graphql";
+import { resolvers } from "./generated";
 
 const PORT = '3333'
 
