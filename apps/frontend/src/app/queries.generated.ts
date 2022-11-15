@@ -10,7 +10,7 @@ export type GetUsersQueryVariables = Types.Exact<{
 }>;
 
 
-export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', email: string, id: string, name?: string | null }>, aggregateUser: { __typename?: 'AggregateUser', _count?: { __typename?: 'UserCountAggregate', _all: number } | null } };
+export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', email: string, id: string, name?: string | null, posts: Array<{ __typename?: 'Post', id: string }> }>, aggregateUser: { __typename?: 'AggregateUser', _count?: { __typename?: 'UserCountAggregate', _all: number } | null } };
 
 
 export const GetUsersDocument = gql`
@@ -19,6 +19,9 @@ export const GetUsersDocument = gql`
     email
     id
     name
+    posts {
+      id
+    }
   }
   aggregateUser {
     _count {
