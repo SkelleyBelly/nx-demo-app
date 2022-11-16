@@ -8,7 +8,7 @@
     "build": "nx build",
     "test": "nx test",
     "codegen": "graphql-codegen --config codegen.ts",
-    "prisma:generate": "prisma generate"
+    "prisma:generate": "nx prisma mongo-graphql"
   },
   "private": true,
   "dependencies": {

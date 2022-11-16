@@ -6,14 +6,18 @@
   "targets": {
     "build": {
       "executor": "@nrwl/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "options": {
         "target": "node",
         "compiler": "tsc",
         "outputPath": "dist/apps/mongo-graphql",
         "main": "apps/mongo-graphql/src/main.ts",
         "tsConfig": "apps/mongo-graphql/tsconfig.app.json",
-        "assets": ["apps/mongo-graphql/src/assets"]
+        "assets": [
+          "apps/mongo-graphql/src/assets"
+        ]
       },
       "configurations": {
         "production": {
@@ -42,17 +46,30 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/mongo-graphql/**/*.ts"]
+        "lintFilePatterns": [
+          "apps/mongo-graphql/**/*.ts"
+        ]
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectRoot}"
+      ],
       "options": {
         "jestConfig": "apps/mongo-graphql/jest.config.ts",
         "passWithNoTests": true
+      }
+    },
+    "prisma": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prisma generate",
+        "cwd": "apps/mongo-graphql"
       }
     }
   },

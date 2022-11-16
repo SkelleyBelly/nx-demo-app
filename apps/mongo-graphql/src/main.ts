@@ -2,8 +2,8 @@
 import 'reflect-metadata'
 import * as tq from 'type-graphql'
 import { ApolloServer } from 'apollo-server'
-import { PrismaClient } from '@prisma/client';
-import { resolvers } from "./generated";
+import { PrismaClient } from './generated/prisma';
+import { resolvers } from "./generated/typegraphql";
 
 const PORT = '3333'
 

@@ -8,11 +8,12 @@ datasource db {
 
 generator client {
   provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
 }
 
 generator typegraphql {
   provider = "typegraphql-prisma"
-  output   = "../apps/mongo-graphql/src/generated/"
+  output   = "../src/generated/typegraphql"
 }
 
 model User {
