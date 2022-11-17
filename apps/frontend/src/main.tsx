@@ -10,6 +10,9 @@ const root = ReactDOM.createRoot(
 
 const client = new ApolloClient({
   uri: '/api',
+  headers: {
+    Authorization: "6372491b7a442cfe25afa336"
+  },
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
