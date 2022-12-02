@@ -65,7 +65,7 @@
         "passWithNoTests": true
       }
     },
-    "prisma": {
+    "prisma:generate": {
       "executor": "nx:run-commands",
       "options": {
         "command": "prisma generate",
@@ -76,6 +76,13 @@
       "executor": "nx:run-commands",
       "options": {
         "command": "ts-node prisma/seed.ts",
+        "cwd": "apps/mongo-graphql"
+      }
+    },
+    "prisma:pull": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "prisma db pull",
         "cwd": "apps/mongo-graphql"
       }
     }
