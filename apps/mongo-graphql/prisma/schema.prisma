@@ -17,14 +17,16 @@ generator typegraphql {
 }
 
 model User {
-  id    String  @id @default(auto()) @map("_id") @db.ObjectId
-  email String  @unique
-  name  String
-  posts Post[]
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  email        String        @unique
+  name         String
+  posts        Post[]
+  applications Application[]
+  addresses    Address[]
 }
 
 model Post {
-  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   title     String
@@ -33,4 +35,34 @@ model Post {
   viewCount Int      @default(0)
   author    User?    @relation(fields: [authorId], references: [id])
   authorId  String?
+}
+
+model Job {
+  id           String        @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  title        String
+  applications Application[]
+}
+
+enum Status {
+  shortlisted
+  applied
+  matching
+  rejected
+}
+
+model Application {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  candidateId String
+  candidate   User     @relation(fields: [candidateId], references: [id])
+  jobId       String
+  job         Job      @relation(fields: [jobId], references: [id])
+  status      Status   @default(applied)
+  createdAt   DateTime @default(now())
+}
+
+type Address {
+  name          String
+  streetAddress String
 }

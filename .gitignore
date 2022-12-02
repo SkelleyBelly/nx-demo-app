@@ -40,3 +40,6 @@ Thumbs.db
 
 # environments
 .env
+
+# local mongo data storage
+/data/

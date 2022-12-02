@@ -17,7 +17,8 @@ const app = async () => {
   const schema = await tq.buildSchema({ resolvers, authChecker: customAuthChecker })
 
   new ApolloServer({
-    schema: applyMiddleware(schema, permissions),
+    schema,
+    // schema: applyMiddleware(schema, permissions),
     context: ({ req }) => {
       const user = getUser(req.headers.authorization)
 

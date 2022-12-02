@@ -22,5 +22,5 @@ export const permissions = shield({
     AggregateUser: allow,
     UserCountAggregate: allow,
 }, {
-    fallbackRule: deny
+    fallbackRule: allow
 })
