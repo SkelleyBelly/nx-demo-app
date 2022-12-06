@@ -63,7 +63,18 @@ An example repo created to demonstrate NX with some cool tools to make life easy
 3. Create a root `.env` file that includes a `DATABASE_URL` string - this will be the MongoDB URL and should include the username and password permissions for a user. It should look something like this:
 
     ```sh
+    #if connecting to a remote DB
     DATABASE_URL="mongodb+srv://<USERNAME>:<PASSWORD>@<URL>.mongodb.net/<COLLECTION_NAME>"
+    ```
+
+    ```sh
+    # if connecting to the local DB replicate set established by the docker-compose up set this URL and set up your /etc/host file to recognise mongo1, mongo2 and mongo3
+    DATABASE_URL="mongodb://localhost:30001,localhost:30002,localhost:30003/dev?replicaSet=my-replica-set"
+
+    # in /etc/hosts
+    127.0.0.1   mongo1 
+    127.0.0.1   mongo2
+    127.0.0.1   mongo3
     ```
 
 4. Generate the CRUD resolvers for the GraphQL server
