@@ -8,8 +8,8 @@ const config: CodegenConfig = {
     "./libs/shared-graphql-interface/src/lib/graphql.types.ts": {
       plugins: ["typescript"]
     },
-    "./src": {
-      documents: 'apps/frontend/src/app/queries.gql',
+    "./": {
+      documents: '**/*.gql',
       preset: "near-operation-file",
       presetConfig: {
         extension: '.generated.ts',

@@ -13,9 +13,43 @@ export type Scalars = {
   DateTime: any;
 };
 
+export type Address = {
+  __typename?: 'Address';
+  name: Scalars['String'];
+  streetAddress: Scalars['String'];
+};
+
+export type AddressCreateInput = {
+  name: Scalars['String'];
+  streetAddress: Scalars['String'];
+};
+
+export type AddressObjectEqualityInput = {
+  name: Scalars['String'];
+  streetAddress: Scalars['String'];
+};
+
+export type AddressOrderByCompositeAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
 export type AffectedRowsOutput = {
   __typename?: 'AffectedRowsOutput';
   count: Scalars['Int'];
+};
+
+export type AggregateApplication = {
+  __typename?: 'AggregateApplication';
+  _count?: Maybe<ApplicationCountAggregate>;
+  _max?: Maybe<ApplicationMaxAggregate>;
+  _min?: Maybe<ApplicationMinAggregate>;
+};
+
+export type AggregateJob = {
+  __typename?: 'AggregateJob';
+  _count?: Maybe<JobCountAggregate>;
+  _max?: Maybe<JobMaxAggregate>;
+  _min?: Maybe<JobMinAggregate>;
 };
 
 export type AggregatePost = {
@@ -32,6 +66,319 @@ export type AggregateUser = {
   _count?: Maybe<UserCountAggregate>;
   _max?: Maybe<UserMaxAggregate>;
   _min?: Maybe<UserMinAggregate>;
+};
+
+export type Application = {
+  __typename?: 'Application';
+  candidate: User;
+  candidateId: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  job: Job;
+  jobId: Scalars['String'];
+  status: Status;
+};
+
+export type ApplicationCountAggregate = {
+  __typename?: 'ApplicationCountAggregate';
+  _all: Scalars['Int'];
+  candidateId: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  jobId: Scalars['Int'];
+  status: Scalars['Int'];
+};
+
+export type ApplicationCountOrderByAggregateInput = {
+  candidateId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  jobId?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
+};
+
+export type ApplicationCreateInput = {
+  candidate: UserCreateNestedOneWithoutApplicationsInput;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  job: JobCreateNestedOneWithoutApplicationsInput;
+  status?: InputMaybe<Status>;
+};
+
+export type ApplicationCreateManyCandidateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  jobId: Scalars['String'];
+  status?: InputMaybe<Status>;
+};
+
+export type ApplicationCreateManyCandidateInputEnvelope = {
+  data: Array<ApplicationCreateManyCandidateInput>;
+};
+
+export type ApplicationCreateManyInput = {
+  candidateId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  jobId: Scalars['String'];
+  status?: InputMaybe<Status>;
+};
+
+export type ApplicationCreateManyJobInput = {
+  candidateId: Scalars['String'];
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Status>;
+};
+
+export type ApplicationCreateManyJobInputEnvelope = {
+  data: Array<ApplicationCreateManyJobInput>;
+};
+
+export type ApplicationCreateNestedManyWithoutCandidateInput = {
+  connect?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ApplicationCreateOrConnectWithoutCandidateInput>>;
+  create?: InputMaybe<Array<ApplicationCreateWithoutCandidateInput>>;
+  createMany?: InputMaybe<ApplicationCreateManyCandidateInputEnvelope>;
+};
+
+export type ApplicationCreateNestedManyWithoutJobInput = {
+  connect?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ApplicationCreateOrConnectWithoutJobInput>>;
+  create?: InputMaybe<Array<ApplicationCreateWithoutJobInput>>;
+  createMany?: InputMaybe<ApplicationCreateManyJobInputEnvelope>;
+};
+
+export type ApplicationCreateOrConnectWithoutCandidateInput = {
+  create: ApplicationCreateWithoutCandidateInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+export type ApplicationCreateOrConnectWithoutJobInput = {
+  create: ApplicationCreateWithoutJobInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+export type ApplicationCreateWithoutCandidateInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  job: JobCreateNestedOneWithoutApplicationsInput;
+  status?: InputMaybe<Status>;
+};
+
+export type ApplicationCreateWithoutJobInput = {
+  candidate: UserCreateNestedOneWithoutApplicationsInput;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  status?: InputMaybe<Status>;
+};
+
+export type ApplicationGroupBy = {
+  __typename?: 'ApplicationGroupBy';
+  _count?: Maybe<ApplicationCountAggregate>;
+  _max?: Maybe<ApplicationMaxAggregate>;
+  _min?: Maybe<ApplicationMinAggregate>;
+  candidateId: Scalars['String'];
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  jobId: Scalars['String'];
+  status: Status;
+};
+
+export type ApplicationListRelationFilter = {
+  every?: InputMaybe<ApplicationWhereInput>;
+  none?: InputMaybe<ApplicationWhereInput>;
+  some?: InputMaybe<ApplicationWhereInput>;
+};
+
+export type ApplicationMaxAggregate = {
+  __typename?: 'ApplicationMaxAggregate';
+  candidateId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  jobId?: Maybe<Scalars['String']>;
+  status?: Maybe<Status>;
+};
+
+export type ApplicationMaxOrderByAggregateInput = {
+  candidateId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  jobId?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
+};
+
+export type ApplicationMinAggregate = {
+  __typename?: 'ApplicationMinAggregate';
+  candidateId?: Maybe<Scalars['String']>;
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  jobId?: Maybe<Scalars['String']>;
+  status?: Maybe<Status>;
+};
+
+export type ApplicationMinOrderByAggregateInput = {
+  candidateId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  jobId?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
+};
+
+export type ApplicationOrderByRelationAggregateInput = {
+  _count?: InputMaybe<SortOrder>;
+};
+
+export type ApplicationOrderByWithAggregationInput = {
+  _count?: InputMaybe<ApplicationCountOrderByAggregateInput>;
+  _max?: InputMaybe<ApplicationMaxOrderByAggregateInput>;
+  _min?: InputMaybe<ApplicationMinOrderByAggregateInput>;
+  candidateId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  jobId?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
+};
+
+export type ApplicationOrderByWithRelationInput = {
+  candidate?: InputMaybe<UserOrderByWithRelationInput>;
+  candidateId?: InputMaybe<SortOrder>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  job?: InputMaybe<JobOrderByWithRelationInput>;
+  jobId?: InputMaybe<SortOrder>;
+  status?: InputMaybe<SortOrder>;
+};
+
+export enum ApplicationScalarFieldEnum {
+  CandidateId = 'candidateId',
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  JobId = 'jobId',
+  Status = 'status'
+}
+
+export type ApplicationScalarWhereInput = {
+  AND?: InputMaybe<Array<ApplicationScalarWhereInput>>;
+  NOT?: InputMaybe<Array<ApplicationScalarWhereInput>>;
+  OR?: InputMaybe<Array<ApplicationScalarWhereInput>>;
+  candidateId?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  jobId?: InputMaybe<StringFilter>;
+  status?: InputMaybe<EnumStatusFilter>;
+};
+
+export type ApplicationScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<ApplicationScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<ApplicationScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<ApplicationScalarWhereWithAggregatesInput>>;
+  candidateId?: InputMaybe<StringWithAggregatesFilter>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  jobId?: InputMaybe<StringWithAggregatesFilter>;
+  status?: InputMaybe<EnumStatusWithAggregatesFilter>;
+};
+
+export type ApplicationUpdateInput = {
+  candidate?: InputMaybe<UserUpdateOneRequiredWithoutApplicationsNestedInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  job?: InputMaybe<JobUpdateOneRequiredWithoutApplicationsNestedInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
+};
+
+export type ApplicationUpdateManyMutationInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
+};
+
+export type ApplicationUpdateManyWithWhereWithoutCandidateInput = {
+  data: ApplicationUpdateManyMutationInput;
+  where: ApplicationScalarWhereInput;
+};
+
+export type ApplicationUpdateManyWithWhereWithoutJobInput = {
+  data: ApplicationUpdateManyMutationInput;
+  where: ApplicationScalarWhereInput;
+};
+
+export type ApplicationUpdateManyWithoutCandidateNestedInput = {
+  connect?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ApplicationCreateOrConnectWithoutCandidateInput>>;
+  create?: InputMaybe<Array<ApplicationCreateWithoutCandidateInput>>;
+  createMany?: InputMaybe<ApplicationCreateManyCandidateInputEnvelope>;
+  delete?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ApplicationScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  set?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  update?: InputMaybe<Array<ApplicationUpdateWithWhereUniqueWithoutCandidateInput>>;
+  updateMany?: InputMaybe<Array<ApplicationUpdateManyWithWhereWithoutCandidateInput>>;
+  upsert?: InputMaybe<Array<ApplicationUpsertWithWhereUniqueWithoutCandidateInput>>;
+};
+
+export type ApplicationUpdateManyWithoutJobNestedInput = {
+  connect?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  connectOrCreate?: InputMaybe<Array<ApplicationCreateOrConnectWithoutJobInput>>;
+  create?: InputMaybe<Array<ApplicationCreateWithoutJobInput>>;
+  createMany?: InputMaybe<ApplicationCreateManyJobInputEnvelope>;
+  delete?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  deleteMany?: InputMaybe<Array<ApplicationScalarWhereInput>>;
+  disconnect?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  set?: InputMaybe<Array<ApplicationWhereUniqueInput>>;
+  update?: InputMaybe<Array<ApplicationUpdateWithWhereUniqueWithoutJobInput>>;
+  updateMany?: InputMaybe<Array<ApplicationUpdateManyWithWhereWithoutJobInput>>;
+  upsert?: InputMaybe<Array<ApplicationUpsertWithWhereUniqueWithoutJobInput>>;
+};
+
+export type ApplicationUpdateWithWhereUniqueWithoutCandidateInput = {
+  data: ApplicationUpdateWithoutCandidateInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+export type ApplicationUpdateWithWhereUniqueWithoutJobInput = {
+  data: ApplicationUpdateWithoutJobInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+export type ApplicationUpdateWithoutCandidateInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  job?: InputMaybe<JobUpdateOneRequiredWithoutApplicationsNestedInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
+};
+
+export type ApplicationUpdateWithoutJobInput = {
+  candidate?: InputMaybe<UserUpdateOneRequiredWithoutApplicationsNestedInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  status?: InputMaybe<EnumStatusFieldUpdateOperationsInput>;
+};
+
+export type ApplicationUpsertWithWhereUniqueWithoutCandidateInput = {
+  create: ApplicationCreateWithoutCandidateInput;
+  update: ApplicationUpdateWithoutCandidateInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+export type ApplicationUpsertWithWhereUniqueWithoutJobInput = {
+  create: ApplicationCreateWithoutJobInput;
+  update: ApplicationUpdateWithoutJobInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+export type ApplicationWhereInput = {
+  AND?: InputMaybe<Array<ApplicationWhereInput>>;
+  NOT?: InputMaybe<Array<ApplicationWhereInput>>;
+  OR?: InputMaybe<Array<ApplicationWhereInput>>;
+  candidate?: InputMaybe<UserRelationFilter>;
+  candidateId?: InputMaybe<StringFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  job?: InputMaybe<JobRelationFilter>;
+  jobId?: InputMaybe<StringFilter>;
+  status?: InputMaybe<EnumStatusFilter>;
+};
+
+export type ApplicationWhereUniqueInput = {
+  id?: InputMaybe<Scalars['String']>;
 };
 
 export type BoolFieldUpdateOperationsInput = {
@@ -80,6 +427,27 @@ export type DateTimeWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
 };
 
+export type EnumStatusFieldUpdateOperationsInput = {
+  set?: InputMaybe<Status>;
+};
+
+export type EnumStatusFilter = {
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusFilter>;
+  notIn?: InputMaybe<Array<Status>>;
+};
+
+export type EnumStatusWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedEnumStatusFilter>;
+  _min?: InputMaybe<NestedEnumStatusFilter>;
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Status>>;
+};
+
 export type IntFieldUpdateOperationsInput = {
   decrement?: InputMaybe<Scalars['Int']>;
   divide?: InputMaybe<Scalars['Int']>;
@@ -115,22 +483,248 @@ export type IntWithAggregatesFilter = {
   notIn?: InputMaybe<Array<Scalars['Int']>>;
 };
 
+export type Job = {
+  __typename?: 'Job';
+  _count?: Maybe<JobCount>;
+  applications: Array<Application>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
+
+export type JobApplicationsArgs = {
+  cursor?: InputMaybe<ApplicationWhereUniqueInput>;
+  distinct?: InputMaybe<Array<ApplicationScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ApplicationOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+export type JobCount = {
+  __typename?: 'JobCount';
+  applications: Scalars['Int'];
+};
+
+export type JobCountAggregate = {
+  __typename?: 'JobCountAggregate';
+  _all: Scalars['Int'];
+  createdAt: Scalars['Int'];
+  id: Scalars['Int'];
+  title: Scalars['Int'];
+  updatedAt: Scalars['Int'];
+};
+
+export type JobCountOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+};
+
+export type JobCreateInput = {
+  applications?: InputMaybe<ApplicationCreateNestedManyWithoutJobInput>;
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type JobCreateManyInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type JobCreateNestedOneWithoutApplicationsInput = {
+  connect?: InputMaybe<JobWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<JobCreateOrConnectWithoutApplicationsInput>;
+  create?: InputMaybe<JobCreateWithoutApplicationsInput>;
+};
+
+export type JobCreateOrConnectWithoutApplicationsInput = {
+  create: JobCreateWithoutApplicationsInput;
+  where: JobWhereUniqueInput;
+};
+
+export type JobCreateWithoutApplicationsInput = {
+  createdAt?: InputMaybe<Scalars['DateTime']>;
+  id?: InputMaybe<Scalars['String']>;
+  title: Scalars['String'];
+  updatedAt?: InputMaybe<Scalars['DateTime']>;
+};
+
+export type JobGroupBy = {
+  __typename?: 'JobGroupBy';
+  _count?: Maybe<JobCountAggregate>;
+  _max?: Maybe<JobMaxAggregate>;
+  _min?: Maybe<JobMinAggregate>;
+  createdAt: Scalars['DateTime'];
+  id: Scalars['String'];
+  title: Scalars['String'];
+  updatedAt: Scalars['DateTime'];
+};
+
+export type JobMaxAggregate = {
+  __typename?: 'JobMaxAggregate';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type JobMaxOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+};
+
+export type JobMinAggregate = {
+  __typename?: 'JobMinAggregate';
+  createdAt?: Maybe<Scalars['DateTime']>;
+  id?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  updatedAt?: Maybe<Scalars['DateTime']>;
+};
+
+export type JobMinOrderByAggregateInput = {
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+};
+
+export type JobOrderByWithAggregationInput = {
+  _count?: InputMaybe<JobCountOrderByAggregateInput>;
+  _max?: InputMaybe<JobMaxOrderByAggregateInput>;
+  _min?: InputMaybe<JobMinOrderByAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+};
+
+export type JobOrderByWithRelationInput = {
+  applications?: InputMaybe<ApplicationOrderByRelationAggregateInput>;
+  createdAt?: InputMaybe<SortOrder>;
+  id?: InputMaybe<SortOrder>;
+  title?: InputMaybe<SortOrder>;
+  updatedAt?: InputMaybe<SortOrder>;
+};
+
+export type JobRelationFilter = {
+  is?: InputMaybe<JobWhereInput>;
+  isNot?: InputMaybe<JobWhereInput>;
+};
+
+export enum JobScalarFieldEnum {
+  CreatedAt = 'createdAt',
+  Id = 'id',
+  Title = 'title',
+  UpdatedAt = 'updatedAt'
+}
+
+export type JobScalarWhereWithAggregatesInput = {
+  AND?: InputMaybe<Array<JobScalarWhereWithAggregatesInput>>;
+  NOT?: InputMaybe<Array<JobScalarWhereWithAggregatesInput>>;
+  OR?: InputMaybe<Array<JobScalarWhereWithAggregatesInput>>;
+  createdAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+  id?: InputMaybe<StringWithAggregatesFilter>;
+  title?: InputMaybe<StringWithAggregatesFilter>;
+  updatedAt?: InputMaybe<DateTimeWithAggregatesFilter>;
+};
+
+export type JobUpdateInput = {
+  applications?: InputMaybe<ApplicationUpdateManyWithoutJobNestedInput>;
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type JobUpdateManyMutationInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type JobUpdateOneRequiredWithoutApplicationsNestedInput = {
+  connect?: InputMaybe<JobWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<JobCreateOrConnectWithoutApplicationsInput>;
+  create?: InputMaybe<JobCreateWithoutApplicationsInput>;
+  update?: InputMaybe<JobUpdateWithoutApplicationsInput>;
+  upsert?: InputMaybe<JobUpsertWithoutApplicationsInput>;
+};
+
+export type JobUpdateWithoutApplicationsInput = {
+  createdAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+  title?: InputMaybe<StringFieldUpdateOperationsInput>;
+  updatedAt?: InputMaybe<DateTimeFieldUpdateOperationsInput>;
+};
+
+export type JobUpsertWithoutApplicationsInput = {
+  create: JobCreateWithoutApplicationsInput;
+  update: JobUpdateWithoutApplicationsInput;
+};
+
+export type JobWhereInput = {
+  AND?: InputMaybe<Array<JobWhereInput>>;
+  NOT?: InputMaybe<Array<JobWhereInput>>;
+  OR?: InputMaybe<Array<JobWhereInput>>;
+  applications?: InputMaybe<ApplicationListRelationFilter>;
+  createdAt?: InputMaybe<DateTimeFilter>;
+  id?: InputMaybe<StringFilter>;
+  title?: InputMaybe<StringFilter>;
+  updatedAt?: InputMaybe<DateTimeFilter>;
+};
+
+export type JobWhereUniqueInput = {
+  id?: InputMaybe<Scalars['String']>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
+  createManyApplication: AffectedRowsOutput;
+  createManyJob: AffectedRowsOutput;
   createManyPost: AffectedRowsOutput;
   createManyUser: AffectedRowsOutput;
+  createOneApplication: Application;
+  createOneJob: Job;
   createOnePost: Post;
   createOneUser: User;
+  deleteManyApplication: AffectedRowsOutput;
+  deleteManyJob: AffectedRowsOutput;
   deleteManyPost: AffectedRowsOutput;
   deleteManyUser: AffectedRowsOutput;
+  deleteOneApplication?: Maybe<Application>;
+  deleteOneJob?: Maybe<Job>;
   deleteOnePost?: Maybe<Post>;
   deleteOneUser?: Maybe<User>;
+  updateManyApplication: AffectedRowsOutput;
+  updateManyJob: AffectedRowsOutput;
   updateManyPost: AffectedRowsOutput;
   updateManyUser: AffectedRowsOutput;
+  updateOneApplication?: Maybe<Application>;
+  updateOneJob?: Maybe<Job>;
   updateOnePost?: Maybe<Post>;
   updateOneUser?: Maybe<User>;
+  upsertOneApplication: Application;
+  upsertOneJob: Job;
   upsertOnePost: Post;
   upsertOneUser: User;
+};
+
+
+export type MutationCreateManyApplicationArgs = {
+  data: Array<ApplicationCreateManyInput>;
+};
+
+
+export type MutationCreateManyJobArgs = {
+  data: Array<JobCreateManyInput>;
 };
 
 
@@ -144,6 +738,16 @@ export type MutationCreateManyUserArgs = {
 };
 
 
+export type MutationCreateOneApplicationArgs = {
+  data: ApplicationCreateInput;
+};
+
+
+export type MutationCreateOneJobArgs = {
+  data: JobCreateInput;
+};
+
+
 export type MutationCreateOnePostArgs = {
   data: PostCreateInput;
 };
@@ -151,6 +755,16 @@ export type MutationCreateOnePostArgs = {
 
 export type MutationCreateOneUserArgs = {
   data: UserCreateInput;
+};
+
+
+export type MutationDeleteManyApplicationArgs = {
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+
+export type MutationDeleteManyJobArgs = {
+  where?: InputMaybe<JobWhereInput>;
 };
 
 
@@ -164,6 +778,16 @@ export type MutationDeleteManyUserArgs = {
 };
 
 
+export type MutationDeleteOneApplicationArgs = {
+  where: ApplicationWhereUniqueInput;
+};
+
+
+export type MutationDeleteOneJobArgs = {
+  where: JobWhereUniqueInput;
+};
+
+
 export type MutationDeleteOnePostArgs = {
   where: PostWhereUniqueInput;
 };
@@ -171,6 +795,18 @@ export type MutationDeleteOnePostArgs = {
 
 export type MutationDeleteOneUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationUpdateManyApplicationArgs = {
+  data: ApplicationUpdateManyMutationInput;
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+
+export type MutationUpdateManyJobArgs = {
+  data: JobUpdateManyMutationInput;
+  where?: InputMaybe<JobWhereInput>;
 };
 
 
@@ -186,6 +822,18 @@ export type MutationUpdateManyUserArgs = {
 };
 
 
+export type MutationUpdateOneApplicationArgs = {
+  data: ApplicationUpdateInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+
+export type MutationUpdateOneJobArgs = {
+  data: JobUpdateInput;
+  where: JobWhereUniqueInput;
+};
+
+
 export type MutationUpdateOnePostArgs = {
   data: PostUpdateInput;
   where: PostWhereUniqueInput;
@@ -195,6 +843,20 @@ export type MutationUpdateOnePostArgs = {
 export type MutationUpdateOneUserArgs = {
   data: UserUpdateInput;
   where: UserWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneApplicationArgs = {
+  create: ApplicationCreateInput;
+  update: ApplicationUpdateInput;
+  where: ApplicationWhereUniqueInput;
+};
+
+
+export type MutationUpsertOneJobArgs = {
+  create: JobCreateInput;
+  update: JobUpdateInput;
+  where: JobWhereUniqueInput;
 };
 
 
@@ -247,6 +909,23 @@ export type NestedDateTimeWithAggregatesFilter = {
   lte?: InputMaybe<Scalars['DateTime']>;
   not?: InputMaybe<NestedDateTimeWithAggregatesFilter>;
   notIn?: InputMaybe<Array<Scalars['DateTime']>>;
+};
+
+export type NestedEnumStatusFilter = {
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusFilter>;
+  notIn?: InputMaybe<Array<Status>>;
+};
+
+export type NestedEnumStatusWithAggregatesFilter = {
+  _count?: InputMaybe<NestedIntFilter>;
+  _max?: InputMaybe<NestedEnumStatusFilter>;
+  _min?: InputMaybe<NestedEnumStatusFilter>;
+  equals?: InputMaybe<Status>;
+  in?: InputMaybe<Array<Status>>;
+  not?: InputMaybe<NestedEnumStatusWithAggregatesFilter>;
+  notIn?: InputMaybe<Array<Status>>;
 };
 
 export type NestedFloatFilter = {
@@ -700,20 +1379,52 @@ export type PostWhereUniqueInput = {
 
 export type Query = {
   __typename?: 'Query';
+  aggregateApplication: AggregateApplication;
+  aggregateJob: AggregateJob;
   aggregatePost: AggregatePost;
   aggregateUser: AggregateUser;
+  application?: Maybe<Application>;
+  applications: Array<Application>;
+  findFirstApplication?: Maybe<Application>;
+  findFirstApplicationOrThrow?: Maybe<Application>;
+  findFirstJob?: Maybe<Job>;
+  findFirstJobOrThrow?: Maybe<Job>;
   findFirstPost?: Maybe<Post>;
   findFirstPostOrThrow?: Maybe<Post>;
   findFirstUser?: Maybe<User>;
   findFirstUserOrThrow?: Maybe<User>;
+  getApplication?: Maybe<Application>;
+  getJob?: Maybe<Job>;
   getPost?: Maybe<Post>;
   getUser?: Maybe<User>;
+  groupByApplication: Array<ApplicationGroupBy>;
+  groupByJob: Array<JobGroupBy>;
   groupByPost: Array<PostGroupBy>;
   groupByUser: Array<UserGroupBy>;
+  job?: Maybe<Job>;
+  jobs: Array<Job>;
   post?: Maybe<Post>;
   posts: Array<Post>;
   user?: Maybe<User>;
   users: Array<User>;
+};
+
+
+export type QueryAggregateApplicationArgs = {
+  cursor?: InputMaybe<ApplicationWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<ApplicationOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+
+export type QueryAggregateJobArgs = {
+  cursor?: InputMaybe<JobWhereUniqueInput>;
+  orderBy?: InputMaybe<Array<JobOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<JobWhereInput>;
 };
 
 
@@ -732,6 +1443,61 @@ export type QueryAggregateUserArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserWhereInput>;
+};
+
+
+export type QueryApplicationArgs = {
+  where: ApplicationWhereUniqueInput;
+};
+
+
+export type QueryApplicationsArgs = {
+  cursor?: InputMaybe<ApplicationWhereUniqueInput>;
+  distinct?: InputMaybe<Array<ApplicationScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ApplicationOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+
+export type QueryFindFirstApplicationArgs = {
+  cursor?: InputMaybe<ApplicationWhereUniqueInput>;
+  distinct?: InputMaybe<Array<ApplicationScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ApplicationOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+
+export type QueryFindFirstApplicationOrThrowArgs = {
+  cursor?: InputMaybe<ApplicationWhereUniqueInput>;
+  distinct?: InputMaybe<Array<ApplicationScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ApplicationOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+
+export type QueryFindFirstJobArgs = {
+  cursor?: InputMaybe<JobWhereUniqueInput>;
+  distinct?: InputMaybe<Array<JobScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<JobOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<JobWhereInput>;
+};
+
+
+export type QueryFindFirstJobOrThrowArgs = {
+  cursor?: InputMaybe<JobWhereUniqueInput>;
+  distinct?: InputMaybe<Array<JobScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<JobOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<JobWhereInput>;
 };
 
 
@@ -775,6 +1541,16 @@ export type QueryFindFirstUserOrThrowArgs = {
 };
 
 
+export type QueryGetApplicationArgs = {
+  where: ApplicationWhereUniqueInput;
+};
+
+
+export type QueryGetJobArgs = {
+  where: JobWhereUniqueInput;
+};
+
+
 export type QueryGetPostArgs = {
   where: PostWhereUniqueInput;
 };
@@ -782,6 +1558,26 @@ export type QueryGetPostArgs = {
 
 export type QueryGetUserArgs = {
   where: UserWhereUniqueInput;
+};
+
+
+export type QueryGroupByApplicationArgs = {
+  by: Array<ApplicationScalarFieldEnum>;
+  having?: InputMaybe<ApplicationScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<ApplicationOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ApplicationWhereInput>;
+};
+
+
+export type QueryGroupByJobArgs = {
+  by: Array<JobScalarFieldEnum>;
+  having?: InputMaybe<JobScalarWhereWithAggregatesInput>;
+  orderBy?: InputMaybe<Array<JobOrderByWithAggregationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<JobWhereInput>;
 };
 
 
@@ -802,6 +1598,21 @@ export type QueryGroupByUserArgs = {
   skip?: InputMaybe<Scalars['Int']>;
   take?: InputMaybe<Scalars['Int']>;
   where?: InputMaybe<UserWhereInput>;
+};
+
+
+export type QueryJobArgs = {
+  where: JobWhereUniqueInput;
+};
+
+
+export type QueryJobsArgs = {
+  cursor?: InputMaybe<JobWhereUniqueInput>;
+  distinct?: InputMaybe<Array<JobScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<JobOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<JobWhereInput>;
 };
 
 
@@ -842,6 +1653,13 @@ export enum QueryMode {
 export enum SortOrder {
   Asc = 'asc',
   Desc = 'desc'
+}
+
+export enum Status {
+  Applied = 'applied',
+  Matching = 'matching',
+  Rejected = 'rejected',
+  Shortlisted = 'shortlisted'
 }
 
 export type StringFieldUpdateOperationsInput = {
@@ -919,10 +1737,22 @@ export type StringWithAggregatesFilter = {
 export type User = {
   __typename?: 'User';
   _count?: Maybe<UserCount>;
+  addresses: Array<Address>;
+  applications: Array<Application>;
   email: Scalars['String'];
   id: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
   posts: Array<Post>;
+};
+
+
+export type UserApplicationsArgs = {
+  cursor?: InputMaybe<ApplicationWhereUniqueInput>;
+  distinct?: InputMaybe<Array<ApplicationScalarFieldEnum>>;
+  orderBy?: InputMaybe<Array<ApplicationOrderByWithRelationInput>>;
+  skip?: InputMaybe<Scalars['Int']>;
+  take?: InputMaybe<Scalars['Int']>;
+  where?: InputMaybe<ApplicationWhereInput>;
 };
 
 
@@ -937,6 +1767,7 @@ export type UserPostsArgs = {
 
 export type UserCount = {
   __typename?: 'UserCount';
+  applications: Scalars['Int'];
   posts: Scalars['Int'];
 };
 
@@ -955,16 +1786,25 @@ export type UserCountOrderByAggregateInput = {
 };
 
 export type UserCreateInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
+  applications?: InputMaybe<ApplicationCreateNestedManyWithoutCandidateInput>;
   email: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
   posts?: InputMaybe<PostCreateNestedManyWithoutAuthorInput>;
 };
 
 export type UserCreateManyInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
   email: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+};
+
+export type UserCreateNestedOneWithoutApplicationsInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutApplicationsInput>;
+  create?: InputMaybe<UserCreateWithoutApplicationsInput>;
 };
 
 export type UserCreateNestedOneWithoutPostsInput = {
@@ -973,15 +1813,30 @@ export type UserCreateNestedOneWithoutPostsInput = {
   create?: InputMaybe<UserCreateWithoutPostsInput>;
 };
 
+export type UserCreateOrConnectWithoutApplicationsInput = {
+  create: UserCreateWithoutApplicationsInput;
+  where: UserWhereUniqueInput;
+};
+
 export type UserCreateOrConnectWithoutPostsInput = {
   create: UserCreateWithoutPostsInput;
   where: UserWhereUniqueInput;
 };
 
-export type UserCreateWithoutPostsInput = {
+export type UserCreateWithoutApplicationsInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
   email: Scalars['String'];
   id?: InputMaybe<Scalars['String']>;
-  name?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
+  posts?: InputMaybe<PostCreateNestedManyWithoutAuthorInput>;
+};
+
+export type UserCreateWithoutPostsInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
+  applications?: InputMaybe<ApplicationCreateNestedManyWithoutCandidateInput>;
+  email: Scalars['String'];
+  id?: InputMaybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type UserGroupBy = {
@@ -991,7 +1846,7 @@ export type UserGroupBy = {
   _min?: Maybe<UserMinAggregate>;
   email: Scalars['String'];
   id: Scalars['String'];
-  name?: Maybe<Scalars['String']>;
+  name: Scalars['String'];
 };
 
 export type UserMaxAggregate = {
@@ -1030,6 +1885,8 @@ export type UserOrderByWithAggregationInput = {
 };
 
 export type UserOrderByWithRelationInput = {
+  addresses?: InputMaybe<AddressOrderByCompositeAggregateInput>;
+  applications?: InputMaybe<ApplicationOrderByRelationAggregateInput>;
   email?: InputMaybe<SortOrder>;
   id?: InputMaybe<SortOrder>;
   name?: InputMaybe<SortOrder>;
@@ -1053,18 +1910,29 @@ export type UserScalarWhereWithAggregatesInput = {
   OR?: InputMaybe<Array<UserScalarWhereWithAggregatesInput>>;
   email?: InputMaybe<StringWithAggregatesFilter>;
   id?: InputMaybe<StringWithAggregatesFilter>;
-  name?: InputMaybe<StringNullableWithAggregatesFilter>;
+  name?: InputMaybe<StringWithAggregatesFilter>;
 };
 
 export type UserUpdateInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
+  applications?: InputMaybe<ApplicationUpdateManyWithoutCandidateNestedInput>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
   posts?: InputMaybe<PostUpdateManyWithoutAuthorNestedInput>;
 };
 
 export type UserUpdateManyMutationInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type UserUpdateOneRequiredWithoutApplicationsNestedInput = {
+  connect?: InputMaybe<UserWhereUniqueInput>;
+  connectOrCreate?: InputMaybe<UserCreateOrConnectWithoutApplicationsInput>;
+  create?: InputMaybe<UserCreateWithoutApplicationsInput>;
+  update?: InputMaybe<UserUpdateWithoutApplicationsInput>;
+  upsert?: InputMaybe<UserUpsertWithoutApplicationsInput>;
 };
 
 export type UserUpdateOneWithoutPostsNestedInput = {
@@ -1077,9 +1945,23 @@ export type UserUpdateOneWithoutPostsNestedInput = {
   upsert?: InputMaybe<UserUpsertWithoutPostsInput>;
 };
 
-export type UserUpdateWithoutPostsInput = {
+export type UserUpdateWithoutApplicationsInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
   email?: InputMaybe<StringFieldUpdateOperationsInput>;
-  name?: InputMaybe<NullableStringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+  posts?: InputMaybe<PostUpdateManyWithoutAuthorNestedInput>;
+};
+
+export type UserUpdateWithoutPostsInput = {
+  addresses?: InputMaybe<Array<AddressCreateInput>>;
+  applications?: InputMaybe<ApplicationUpdateManyWithoutCandidateNestedInput>;
+  email?: InputMaybe<StringFieldUpdateOperationsInput>;
+  name?: InputMaybe<StringFieldUpdateOperationsInput>;
+};
+
+export type UserUpsertWithoutApplicationsInput = {
+  create: UserCreateWithoutApplicationsInput;
+  update: UserUpdateWithoutApplicationsInput;
 };
 
 export type UserUpsertWithoutPostsInput = {
@@ -1091,9 +1973,11 @@ export type UserWhereInput = {
   AND?: InputMaybe<Array<UserWhereInput>>;
   NOT?: InputMaybe<Array<UserWhereInput>>;
   OR?: InputMaybe<Array<UserWhereInput>>;
+  addresses?: InputMaybe<Array<AddressObjectEqualityInput>>;
+  applications?: InputMaybe<ApplicationListRelationFilter>;
   email?: InputMaybe<StringFilter>;
   id?: InputMaybe<StringFilter>;
-  name?: InputMaybe<StringNullableFilter>;
+  name?: InputMaybe<StringFilter>;
   posts?: InputMaybe<PostListRelationFilter>;
 };
 

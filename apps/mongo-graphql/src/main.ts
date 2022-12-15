@@ -14,21 +14,22 @@ const PORT = '3333'
 const prisma = new PrismaClient()
 
 const app = async () => {
-  const schema = await tq.buildSchema({ resolvers, authChecker: customAuthChecker })
+  // const schema = await tq.buildSchema({ resolvers, authChecker: customAuthChecker })
+  const schema = await tq.buildSchema({ resolvers })
 
   new ApolloServer({
     schema,
     // schema: applyMiddleware(schema, permissions),
     context: ({ req }) => {
-      const user = getUser(req.headers.authorization)
+      // const user = getUser(req.headers.authorization)
 
-      if (!user) {
-        throw new GraphQLError('User is not authenticated');
-      }
+      // if (!user) {
+      //   throw new GraphQLError('User is not authenticated');
+      // }
 
       return {
         prisma,
-        user,
+        // user,
       }
 
     }

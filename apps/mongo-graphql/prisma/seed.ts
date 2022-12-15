@@ -6,7 +6,7 @@ const prisma = new PrismaClient()
 
 async function main() {
 
-  const users = new Array(100_000).fill(undefined).map((_, index) => ({
+  const users = new Array(500_000).fill(undefined).map((_, index) => ({
     id: new ObjectId().toHexString(),
     name: faker.name.fullName(),
     email: faker.internet.email()
@@ -18,7 +18,7 @@ async function main() {
 
   console.log("USERS ADDED")
 
-  const jobs = new Array(10).fill(undefined).map((_, index) => ({
+  const jobs = new Array(50).fill(undefined).map((_, index) => ({
     id: new ObjectId().toHexString(),
     title: faker.name.jobTitle()
   }));
@@ -29,7 +29,7 @@ async function main() {
 
   console.log("JOBS ADDED")
 
-  const applications = new Array(10_000).fill(undefined).map((_, index) => ({
+  const applications = new Array(50_000).fill(undefined).map((_, index) => ({
     candidateId: users[index].id,
     jobId: jobs[Math.floor(index / 1000)].id,
     status: Status.applied
