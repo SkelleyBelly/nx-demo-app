@@ -1,16 +1,6 @@
-export interface ButtonProps {
-    children: string;
-    onClick: () => void;
-}
+import {Button as MuiButton} from "@mui/material"
 
 /**
  * Clickity clackity clonk
  */
-export const Button = ({ children, onClick }: ButtonProps) => <button onClick={onClick} style={{
-    padding: "8px 16px",
-    fontFamily: "sans-serif",
-    border: "none",
-    borderRadius: "8px",
-    backgroundColor: "#24A0ED",
-    color: "white"
-}}>{children}</button>
+export const Button = MuiButton;

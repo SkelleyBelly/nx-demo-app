@@ -2,6 +2,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { BrowserRouter } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material"
 
 import App from './app/app';
 
@@ -39,9 +40,11 @@ const client = new ApolloClient({
 root.render(
   <StrictMode>
     <BrowserRouter>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
+      <ThemeProvider theme={createTheme()}>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </ThemeProvider>
     </BrowserRouter>
   </StrictMode>
 );
