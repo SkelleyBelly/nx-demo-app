@@ -23,7 +23,8 @@
       ],
       "@nx-demo-app/shared-graphql-interface/schema": [
         "libs/shared-graphql-interface/src/lib/graphql.schema.json"
-      ]
+      ],
+      "@nx-demo-app/user-list": ["libs/user-list/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
