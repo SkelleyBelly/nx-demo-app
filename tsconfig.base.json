@@ -17,8 +17,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@nx-demo-app/client/design-system": [
+        "libs/client/design-system/src/index.ts"
+      ],
       "@nx-demo-app/client/user-list": ["libs/client/user-list/src/index.ts"],
-      "@nx-demo-app/design-system": ["libs/design-system/src/index.ts"],
       "@nx-demo-app/shared-graphql-interface": [
         "libs/shared-graphql-interface/src/index.ts"
       ],

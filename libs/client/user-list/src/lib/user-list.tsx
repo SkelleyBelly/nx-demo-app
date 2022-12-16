@@ -1,9 +1,14 @@
 import { NetworkStatus } from '@apollo/client';
-import { Button, UserCard, Stack, Box } from '@nx-demo-app/design-system';
+import {
+  Button,
+  UserCard,
+  Stack,
+  Box,
+} from '@nx-demo-app/client/design-system';
 import { useGetUsersQuery } from './queries.generated';
 
 /* eslint-disable-next-line */
-export interface UserListProps { }
+export interface UserListProps {}
 
 export const UserList = (props: UserListProps) => {
   const { data, error, fetchMore, networkStatus } = useGetUsersQuery({
@@ -21,7 +26,7 @@ export const UserList = (props: UserListProps) => {
   }
 
   if (networkStatus === NetworkStatus.loading) {
-    return <p>Loading...</p>
+    return <p>Loading...</p>;
   }
 
   return (
