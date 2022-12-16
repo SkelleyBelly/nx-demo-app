@@ -1,12 +1,16 @@
+import {Button} from '../button'
+import {Box} from '../box'
+
 export interface UserCardProps {
-  name: String;
-  email: String;
+  name: string;
+  email: string;
+  onRename: () => void;
 }
 
 /**
  * A super cool way top show off our users
  */
-export const UserCard = ({ name, email }: UserCardProps) => (
+export const UserCard = ({ name, email, onRename }: UserCardProps) => (
   <div
     style={{
       border: '1px solid rgba(0,0,0,0.1)',
@@ -16,7 +20,16 @@ export const UserCard = ({ name, email }: UserCardProps) => (
       fontFamily: 'sans-serif',
     }}
   >
-    <h2>{name}</h2>
-    <p style={{ color: 'rgba(0,0,0,0.5)' }}>{email}</p>
+    <Box display="flex" justifyContent="space-between">
+      <Box>
+        <h2>{name}</h2>
+        <p style={{ color: 'rgba(0,0,0,0.5)' }}>{email}</p>
+
+      </Box>
+
+      <Box alignSelf="center">
+        <Button variant="outlined" color="error" onClick={onRename}>Rename</Button>
+      </Box>
+    </Box>
   </div>
 );

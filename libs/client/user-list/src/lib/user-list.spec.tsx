@@ -59,4 +59,6 @@ describe('App component', () => {
 
     await screen.findByText('There was an error!');
   });
+
+  it.todo("should open the update user modal with the correct initial data")
 });

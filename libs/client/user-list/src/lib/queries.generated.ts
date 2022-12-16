@@ -9,34 +9,24 @@ export type GetUsersQueryVariables = Types.Exact<{
   cursor?: Types.InputMaybe<Types.UserWhereUniqueInput>;
 }>;
 
-export type GetUsersQuery = {
-  __typename?: 'Query';
-  users: Array<{
-    __typename?: 'User';
-    email: string;
-    id: string;
-    name: string;
-  }>;
-  aggregateUser: {
-    __typename?: 'AggregateUser';
-    _count?: { __typename?: 'UserCountAggregate'; _all: number } | null;
-  };
-};
+
+export type GetUsersQuery = { __typename?: 'Query', users: Array<{ __typename?: 'User', email: string, id: string, name: string }>, aggregateUser: { __typename?: 'AggregateUser', _count?: { __typename?: 'UserCountAggregate', _all: number } | null } };
+
 
 export const GetUsersDocument = gql`
-  query GetUsers($take: Int, $skip: Int, $cursor: UserWhereUniqueInput) {
-    users(take: $take, skip: $skip, cursor: $cursor) {
-      email
-      id
-      name
-    }
-    aggregateUser {
-      _count {
-        _all
-      }
+    query GetUsers($take: Int, $skip: Int, $cursor: UserWhereUniqueInput) {
+  users(take: $take, skip: $skip, cursor: $cursor) {
+    email
+    id
+    name
+  }
+  aggregateUser {
+    _count {
+      _all
     }
   }
-`;
+}
+    `;
 
 /**
  * __useGetUsersQuery__
@@ -56,32 +46,14 @@ export const GetUsersDocument = gql`
  *   },
  * });
  */
-export function useGetUsersQuery(
-  baseOptions?: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(
-    GetUsersDocument,
-    options
-  );
-}
-export function useGetUsersLazyQuery(
-  baseOptions?: Apollo.LazyQueryHookOptions<
-    GetUsersQuery,
-    GetUsersQueryVariables
-  >
-) {
-  const options = { ...defaultOptions, ...baseOptions };
-  return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(
-    GetUsersDocument,
-    options
-  );
-}
+export function useGetUsersQuery(baseOptions?: Apollo.QueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
+      }
+export function useGetUsersLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetUsersQuery, GetUsersQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<GetUsersQuery, GetUsersQueryVariables>(GetUsersDocument, options);
+        }
 export type GetUsersQueryHookResult = ReturnType<typeof useGetUsersQuery>;
-export type GetUsersLazyQueryHookResult = ReturnType<
-  typeof useGetUsersLazyQuery
->;
-export type GetUsersQueryResult = Apollo.QueryResult<
-  GetUsersQuery,
-  GetUsersQueryVariables
->;
+export type GetUsersLazyQueryHookResult = ReturnType<typeof useGetUsersLazyQuery>;
+export type GetUsersQueryResult = Apollo.QueryResult<GetUsersQuery, GetUsersQueryVariables>;
