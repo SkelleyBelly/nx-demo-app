@@ -1,13 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
-import { UserList } from '@nx-demo-app/client/user-list';
-
-const About = () => <p>Hello else</p>;
+import * as Pages from './routes'
 
 export const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<UserList />} />
-      <Route path="*" element={<About />} />
+      <Route path="/" element={<Pages.Home />} />
+      <Route path="*" element={<Pages.ErrorPage />} />
     </Routes>
   );
 };
