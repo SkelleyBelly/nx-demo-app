@@ -20,9 +20,8 @@ model User {
   id           String        @id @default(auto()) @map("_id") @db.ObjectId
   email        String        @unique
   name         String
-  applications UserApplication[]
+  applications Application[]
   addresses    Address[]
-  linkedApplications Application[]
 }
 
 model Job {
@@ -30,6 +29,7 @@ model Job {
   createdAt    DateTime      @default(now())
   updatedAt    DateTime      @updatedAt
   title        String
+  applications Application[]
 }
 
 enum Status {
@@ -41,10 +41,10 @@ enum Status {
 
 model Application {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId
-  candidate   ApplicationCandidate
   candidateId String
-  linkedCandidate  User     @relation(fields: [candidateId], references: [id])
+  candidate   User     @relation(fields: [candidateId], references: [id])
   jobId       String
+  job         Job      @relation(fields: [jobId], references: [id])
   status      Status   @default(applied)
   createdAt   DateTime @default(now())
 }
@@ -52,15 +52,4 @@ model Application {
 type Address {
   name          String
   streetAddress String
-}
-
-type UserApplication {
-  id     String
-  jobId  String
-  status Status
-}
-
-type ApplicationCandidate {
-  id    String
-  name  String
 }
